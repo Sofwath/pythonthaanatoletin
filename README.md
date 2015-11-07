@@ -1,5 +1,5 @@
 # python thaana to letin converter 
-a small tool to convert from thaan to letin 
+a small tool to convert from thaana to letin 
 
 exception mappings and sample text(thaana) taken from https://github.com/naxeem/thaana-transliterator (a nice little php base thaana to letin tool). 
 
