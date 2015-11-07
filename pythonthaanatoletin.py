@@ -1,5 +1,6 @@
 # coding: utf8
 
+
 letin=[" ","","h","hs","n","r","b","hl","k","v","m","f","dh","th","l","g","ng","s","d","j","hc","z","t","p","y","tt","h","h","dh","s","s","t","t̤","g","q","a","aa","i","ee","u","oo","e","ye","o","ao",""]
 thaana=[" ","އ","ހ","ށ","ނ","ރ","ބ","ޅ","ކ","ވ","މ","ފ","ދ","ތ","ލ","ގ","ޏ","ސ","ޑ","ޖ","ޗ","ޒ","ޓ","ޕ","ޔ","ޘ","ޙ","ޚ","ޛ","ޝ","ޞ","ޟ","ޠ","ޣ","ޤ"," ަ"," ާ"," ި"," ީ"," ު"," ޫ"," ެ"," ޭ "," ޮ"," ޯ"," ް"]
 
@@ -11,7 +12,6 @@ str=u'ހުރިހާ އިންސާނުން ވެސް އުފަންވަނީ، ދަރަ
 
 
 def latin(str):
-    excp=""
     akuru=""
     message=""
     alifex=False
@@ -19,8 +19,9 @@ def latin(str):
     it = iter(xrange(0,len(str)))
     for i in it:
         try :
-            s=(str[i].encode("utf-8"))
-            nexts=(str[i+1].encode("utf-8"))
+            s=(str[i].encode("utf-8")).strip()
+            two=(str[i:+2].encode("utf-8"))
+            three=(str[i:i+3].encode("utf-8"))
         except IndexError:
             pass
 
@@ -29,10 +30,10 @@ def latin(str):
                 message+=" "
                 break
 	    akuru=thaana[j].replace(" ","")
-            exindex = [exceptions.index(i) for i in exceptions if ((s+nexts)) ==  i]
+            exindex = [exceptions.index(i) for i in exceptions if ((two) or (three)) ==  i]
             # check for exceptions 
             if exindex:
-                if ((exceptions[exindex[0]])==(s+nexts)):
+                if ((exceptions[exindex[0]]==(two)) or (exceptions[exindex[0]]==(three))):
                     alifex=True
             if (alifex==True):
                 message+=expfix[exindex[0]] # exceptions
@@ -46,7 +47,8 @@ def latin(str):
             i=next(it) # skip iteration in main loop if exception 
 
 
-    return message #[::-1]
+    return message
 
 print str
 print latin(str)
+
